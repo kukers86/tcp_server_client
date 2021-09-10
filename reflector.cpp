@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 	}
 	
 	observer.incoming_packet_func = onIncomingMsg;
-	observer.disconnected_func    = nullptr;
+	observer.disconnected_func    = onClientDisconnected;
 	observer.wantedIp             = "";
 	
 	server.subscribe(observer);
