@@ -11,7 +11,7 @@ add_library(${PROJECT_NAME}
         src/tcp_server.cpp
         src/client.cpp)
 
-option(SERVER_EXAMPLE "Build SERVER" ON)
+option(SERVER_EXAMPLE "Build SERVER" OFF)
 
 if(SERVER_EXAMPLE)
 
@@ -25,7 +25,7 @@ if(SERVER_EXAMPLE)
 
 endif()
 
-option(CLIENT_EXAMPLE "Build CLIENT" ON)
+option(CLIENT_EXAMPLE "Build CLIENT" OFF)
 
 if(CLIENT_EXAMPLE)
 
@@ -36,5 +36,19 @@ if(CLIENT_EXAMPLE)
         add_executable(tcp_client client_example.cpp)
 
         target_link_libraries (tcp_client ${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
+
+endif()
+
+option(REFLECTOR "Build REFLECTOR" ON)
+
+if(REFLECTOR)
+
+        add_definitions(
+                -DREFLECTOR
+        )
+
+        add_executable(reflector reflector.cpp)
+
+        target_link_libraries (reflector ${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
 
 endif()
